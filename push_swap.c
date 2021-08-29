@@ -1,29 +1,4 @@
 #include "push_swap.h"
-void push(int arg, t_status_lists **list)
-{
-    t_init_list *tmp;
-
-    if(arg)
-    {
-        if(!(*list)->begin_B)
-        {
-            (*list)->begin_B = (*list)->begin_A;
-            (*list)->begin_A = (*list)->begin_A->next;
-            (*list)->begin_B->next = NULL;
-        }
-        else
-        {
-            tmp = (*list)->begin_A;
-            (*list)->begin_A = (*list)->begin_A->next;
-            tmp->next = (*list)->begin_B;
-            (*list)->begin_B = tmp;
-        }
-    }
-    else
-    {
-
-    }
-}
 
 void    stack_inint(int argc, char **argv, t_status_lists **list)
 {
@@ -52,8 +27,7 @@ int main(int argc, char **argv)
 {
     t_init_list *temp;
     t_status_lists *info_AB;
-    //int i = 1;
-
+    
     info_AB = malloc(sizeof(t_status_lists));
     info_AB->begin_A = NULL;
     info_AB->last_A = NULL;
@@ -62,35 +36,51 @@ int main(int argc, char **argv)
     stack_inint(argc, argv, &info_AB);
     
    
-    push(0, &info_AB);
- //   push(0, &info_AB);
-   
-      temp = info_AB->begin_B;
-
-     while (temp->next)
-    {
-        printf("%d - %d  \n", temp->num, temp->value);
-        temp = temp->next;
-    }
-    printf("%d - %d  \n", temp->num, temp->value);
-     temp = info_AB->begin_A;
+    push_B(&info_AB);
+    push_B(&info_AB);
+    //push_B(&info_AB);
+       
+ // Проверка прямой команды -------------------------- 
+    printf("Stack B\n");
+    temp = info_AB->begin_B; 
     while (temp->next)
     {
         printf("%d - %d  \n", temp->num, temp->value);
         temp = temp->next;
     }
     printf("%d - %d  \n", temp->num, temp->value);
-  
+    
+    printf("Stack A\n");
+    temp = info_AB->begin_A;
+    while (temp->next)
+    {
+        printf("%d - %d  \n", temp->num, temp->value);
+        temp = temp->next;
+    }
+    printf("%d - %d  \n", temp->num, temp->value);
+// Проверка реверсной команды--------------------------  
+    
+    rotate_RR(&info_AB);
        
+    printf("Stack B\n");
+    temp = info_AB->begin_B; 
+    while (temp->next)
+    {
+        printf("%d - %d  \n", temp->num, temp->value);
+        temp = temp->next;
+    }
+    printf("%d - %d  \n", temp->num, temp->value);
+    
+        
+    printf("Stack A\n");
+    temp = info_AB->begin_A;
+    while (temp->next)
+    {
+        printf("%d - %d  \n", temp->num, temp->value);
+        temp = temp->next;
+    }
+    printf("%d - %d  \n", temp->num, temp->value);
+    
     return(0);
        
 }
-
-yhnethnteyntyeh
-h
-wrth
-RLIMIT_WAKEUPS_MONITORh
-rtwh
-
-rh
-rtwhwrthrwthrthg
