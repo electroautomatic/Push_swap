@@ -1,5 +1,7 @@
 #include "push_swap.h"
 
+
+
 void    stack_inint(int argc, char **argv, t_status_lists **list)
 {
     int i = 1;
@@ -33,24 +35,17 @@ int main(int argc, char **argv)
     info_AB->last_A = NULL;
     info_AB->begin_B = NULL;
     info_AB->last_B = NULL;
-    stack_inint(argc, argv, &info_AB);
     
+    stack_inint(argc, argv, &info_AB);
+    index_sort(&info_AB);
    
-    push_B(&info_AB);
-    push_B(&info_AB);
+    //push_B(&info_AB);
+    //push_B(&info_AB);
     //push_B(&info_AB);
        
  // Проверка прямой команды -------------------------- 
-    printf("Stack B\n");
-    temp = info_AB->begin_B; 
-    while (temp->next)
-    {
-        printf("%d - %d  \n", temp->num, temp->value);
-        temp = temp->next;
-    }
-    printf("%d - %d  \n", temp->num, temp->value);
-    
-    printf("Stack A\n");
+        
+ /*   printf("Stack A\n");
     temp = info_AB->begin_A;
     while (temp->next)
     {
@@ -71,16 +66,28 @@ int main(int argc, char **argv)
     }
     printf("%d - %d  \n", temp->num, temp->value);
     
-        
+ */       
+    //sort_3_args(&info_AB);
+
+    //sort_5_args(&info_AB);
+    sort_100_args(&info_AB);
+
     printf("Stack A\n");
     temp = info_AB->begin_A;
-    while (temp->next)
+    while (temp)
     {
-        printf("%d - %d  \n", temp->num, temp->value);
+        printf("%d - %d  \n", temp->value, temp->index_sort);
         temp = temp->next;
     }
-    printf("%d - %d  \n", temp->num, temp->value);
-    
+
+    printf("Stack B\n");
+    temp = info_AB->begin_B;
+    while (temp)
+    {
+        printf("%d - %d  \n", temp->value, temp->index_sort);
+        temp = temp->next;
+    }
+        
     return(0);
        
 }
