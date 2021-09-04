@@ -12,6 +12,7 @@ void    stack_inint(int argc, char **argv, t_status_lists **list)
         temp = malloc(sizeof(t_init_list));
         temp->value = atoi(argv[i]);
         temp->num = i;
+        temp->flag = 0;
         temp->next = NULL;
         if ((*list)->last_A)
         {
@@ -27,7 +28,7 @@ void    stack_inint(int argc, char **argv, t_status_lists **list)
 
 int main(int argc, char **argv)
 {
-    t_init_list *temp;
+ //   t_init_list *temp;
     t_status_lists *info_AB;
     
     info_AB = malloc(sizeof(t_status_lists));
@@ -72,7 +73,8 @@ int main(int argc, char **argv)
     //sort_5_args(&info_AB);
     sort_100_args(&info_AB);
 
-    printf("Stack A\n");
+ ///------------------------------------------------------
+ /*   printf("Stack A\n");
     temp = info_AB->begin_A;
     while (temp)
     {
@@ -87,7 +89,7 @@ int main(int argc, char **argv)
         printf("%d - %d  \n", temp->value, temp->index_sort);
         temp = temp->next;
     }
-        
+*/        
     return(0);
        
 }

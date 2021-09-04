@@ -12,6 +12,7 @@ typedef struct s_list
     int index_sort;
     struct s_list *next;
     struct s_list *prev;
+    int flag;
 }   t_init_list;
 
 typedef struct item_stat
@@ -26,8 +27,7 @@ typedef struct s_sort_init
 {
     int next;
     int mid;
-    int max;
-    int flag;
+    int max;    
 }  t_sort_inint;
 
 int     ft_atoi(const char *str);
