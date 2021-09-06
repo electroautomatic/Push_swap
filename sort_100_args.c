@@ -99,7 +99,8 @@ void    push_high_mid_A(t_status_lists **list, t_sort_inint *sort_inint)
             tmp = tmp->next;
             push_A(list);
             rotate_A(list);
-            //break;
+            count--;
+            
         }
         else if (tmp->next != NULL && tmp->next->index_sort == sort_inint->next)
         {
@@ -110,7 +111,8 @@ void    push_high_mid_A(t_status_lists **list, t_sort_inint *sort_inint)
             tmp = tmp->next;
             push_A(list);
             rotate_A(list);
-            //break;
+            count--;
+            
         }
         else if ((*list)->begin_B != NULL && (*list)->last_B != (*list)->begin_B && (*list)->last_B->index_sort == sort_inint->next)
         {
@@ -121,29 +123,31 @@ void    push_high_mid_A(t_status_lists **list, t_sort_inint *sort_inint)
             tmp = tmp->next;
             push_A(list);
             rotate_A(list);
-            //break;
+            count--;
+            
         }
         
         else if ((*list)->begin_A->index_sort == sort_inint->next)
         {
             sort_inint->next++;
             rotate_A(list);
-            //break;
+            
         }
         else if ((*list)->begin_A->next->index_sort == sort_inint->next)
         {
             sort_inint->next++;
             swap_A(list);
             rotate_A(list);
-            //break;
+            
         }
         else
         {
             if (tmp->index_sort > sort_inint->mid)
             {
-                tmp->flag++;
+                tmp->flag = sort_inint->mid;  //  флаг будет равен медиане
                 tmp = tmp->next;
                 push_A(list);
+                count--;
             }
             else
             {
@@ -152,7 +156,6 @@ void    push_high_mid_A(t_status_lists **list, t_sort_inint *sort_inint)
                 rotate_B(list);
             }
         }
-        count--;
     }
 
 }
@@ -160,10 +163,8 @@ void    push_high_mid_A(t_status_lists **list, t_sort_inint *sort_inint)
 void    push_list_flags_B(t_status_lists **list, t_sort_inint *sort_inint)
 {
     t_init_list *tmp;
- //   int  count;
     int flag;
-
- //   count = list_size_new((*list)->begin_A);
+ 
     tmp = (*list)->begin_A;
     flag = tmp->flag;
 
@@ -175,7 +176,7 @@ void    push_list_flags_B(t_status_lists **list, t_sort_inint *sort_inint)
             sort_inint->next++;
             tmp = tmp->next;
             rotate_A(list);
- //           count--;
+ 
         }
         else if ((*list)->begin_B != NULL && (*list)->begin_B->index_sort == sort_inint->next)
         {
@@ -183,7 +184,7 @@ void    push_list_flags_B(t_status_lists **list, t_sort_inint *sort_inint)
             sort_inint->next++;
             push_A(list);
             rotate_A(list);
-            //break;
+            
         }
   /*      else if ((*list)->last_B != NULL && (*list)->begin_B->next != NULL && (*list)->begin_B->next->index_sort == sort_inint->next)
         {
@@ -201,17 +202,14 @@ void    push_list_flags_B(t_status_lists **list, t_sort_inint *sort_inint)
             rotate_RB(list);
             push_A(list);
             rotate_A(list);
-            //break;
         }
         else if (tmp->flag == flag)
         {
             tmp = tmp->next;
             push_B(list);
         }
- //       count--;
     }
-    
-
+  
 }
 
 void    sort_100_args(t_status_lists **list)
