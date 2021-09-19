@@ -33,5 +33,5 @@ void    sort_5_args(t_status_lists **list)
         push_A(list);
         push_A(list);
         
-    }   
+    }
 }

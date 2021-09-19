@@ -78,7 +78,7 @@ void    push_low_mid_B2(t_status_lists **list, t_sort_inint *sort_inint) // за
     
 }
 
-void    push_high_mid_A(t_status_lists **list, t_sort_inint *sort_inint)
+void    push_high_mid_A(t_status_lists **list, t_sort_inint *sort_inint) // пушим в А то что меньше медианы
 {
     t_init_list *tmp;
     int  count;
@@ -259,3 +259,5 @@ void    sort_100_args(t_status_lists **list)
     push_high_mid_A(list, sort_init);
 */
 }
+
+

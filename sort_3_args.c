@@ -2,7 +2,7 @@
 
 void    sort_3_args(t_status_lists **list)
 {
-    if (sort_or_not((*list)->begin_A))
+    if (!sort_or_not((*list)->begin_A))
     {
         if (((*list)->begin_A->value > (*list)->begin_A->next->value) && \
         ((*list)->begin_A->value < (*list)->last_A->value) && \
@@ -37,5 +37,4 @@ void    sort_3_args(t_status_lists **list)
         rotate_RA(list);
         }
     }
-
 }
