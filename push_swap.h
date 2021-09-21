@@ -22,7 +22,7 @@ typedef struct item_stat
     t_init_list *begin_B;
     t_init_list *last_B;
     int max_index_list_A;
-    //int flag_group; //     
+    int flag_group;     
 }   t_status_lists;
 
 typedef struct s_sort_init

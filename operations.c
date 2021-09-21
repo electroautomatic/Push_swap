@@ -4,6 +4,8 @@ void    push_B(t_status_lists **list)
 {
     t_init_list *tmp;
 
+    if ((*list)->begin_A == NULL)
+        return ;
     if(!(*list)->begin_B)
     {
         (*list)->begin_B = (*list)->begin_A;
@@ -26,6 +28,8 @@ void    push_A(t_status_lists **list)
 {
     t_init_list *tmp;
 
+    if ((*list)->begin_B == NULL)
+        return ;
     if(!(*list)->begin_A)
     {
         (*list)->begin_A = (*list)->begin_B;

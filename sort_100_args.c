@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int list_size_new(t_init_list *list)
+int list_size_new(t_init_list *list) // считает размер списка
 {
     int size;
     t_init_list *tmp;
@@ -16,6 +16,44 @@ int list_size_new(t_init_list *list)
     return(size);
 }
 
+int ft_list_max_num(t_init_list *list) // ищет максимальный элемент списка
+{
+    int max_num;
+    t_init_list *tmp;
+
+    max_num = 0;
+    tmp = list;
+    while (tmp)
+    {
+        if (max_num < tmp->index_sort)
+            max_num = tmp->index_sort;
+        tmp = tmp->next;
+    }
+    return(max_num);     
+}
+
+// int ft_count_push_a(t_init_list *list, int mid) // ищет количетво элементов для переброски из В в А
+// {
+//     int count;
+//     t_init_list *tmp;
+    
+//     count = 0;
+//     tmp = list;
+//     while (tmp)
+//     {
+//         if (tmp->index_sort > mid)
+//         {
+//             count++;
+//             tmp = tmp->next;
+//         }
+//         else
+//             tmp = tmp->next;
+//     }       
+//     return(count);
+// }
+
+
+
 void    push_low_mid_B(t_status_lists **list, t_sort_inint *sort_inint) //запускаем 1 раз вначале сортировки.
 {
     t_init_list *tmp;
@@ -24,7 +62,7 @@ void    push_low_mid_B(t_status_lists **list, t_sort_inint *sort_inint) //зап
     count = list_size_new((*list)->begin_A);
     (*list)->max_index_list_A = (*list)->last_A->num;
     sort_inint->max = (*list)->max_index_list_A;
-    sort_inint->mid = (sort_inint->max) / 2 + sort_inint->next;
+    sort_inint->mid = (sort_inint->max) / 2;
 
     tmp = (*list)->begin_A;
 
@@ -72,6 +110,48 @@ void    push_low_mid_B2(t_status_lists **list, t_sort_inint *sort_inint) // за
     }
     while (count)
     {
+        if ((*list)->begin_B->index_sort != sort_inint->next)
+            {
+                rotate_RR(list);
+                count--;
+            }
+        else
+            {
+                rotate_RA(list);
+                count--;
+            }
+    }
+    
+}
+
+void    push_low_mid_B2_super(t_status_lists **list, t_sort_inint *sort_inint) // запускаем каждый раз когда в стеке B не остается элементов, перекидывает половину верхнего блока А в B.!!! нужно сделать!!
+{
+    t_init_list *tmp;
+    int  count;
+
+    count = 0;
+    sort_inint->max = (*list)->max_index_list_A;
+    sort_inint->mid = (sort_inint->max - sort_inint->next) / 2 + sort_inint->next;
+
+    tmp = (*list)->begin_A;
+
+    while (tmp->flag == 0)
+    {
+        if (tmp->index_sort <= sort_inint->mid)
+        {
+            tmp = tmp->next;
+            push_B(list);
+        }
+        else
+        {
+            tmp = tmp->next;
+            rotate_A(list);
+            count++;
+        }
+        
+    }
+    while (count)
+    {
         rotate_RA(list);
         count--;
     }
@@ -81,17 +161,20 @@ void    push_low_mid_B2(t_status_lists **list, t_sort_inint *sort_inint) // за
 void    push_high_mid_A(t_status_lists **list, t_sort_inint *sort_inint) // пушим в А то что меньше медианы
 {
     t_init_list *tmp;
-    int  count;
-    
-    
+    int count;
+        
     count = list_size_new((*list)->begin_B);
-    sort_inint->max = sort_inint->mid;
+    
+    
+    sort_inint->max = ft_list_max_num((*list)->begin_B);
     sort_inint->mid = (sort_inint->max - sort_inint->next) / 2 + sort_inint->next;
-
+    
+    //count = ft_count_push_a((*list)->begin_B, sort_inint->mid);
     tmp = (*list)->begin_B;
-
+    
     while (count)
-    {
+     {
+        
         if (tmp->index_sort == sort_inint->next)
         {
             tmp->flag = -1;
@@ -102,30 +185,30 @@ void    push_high_mid_A(t_status_lists **list, t_sort_inint *sort_inint) // пу
             count--;
             
         }
-        else if (tmp->next != NULL && tmp->next->index_sort == sort_inint->next)
-        {
-            tmp = tmp->next;
-            swap_B(list);
-            tmp->flag = -1;
-            sort_inint->next++;
-            tmp = tmp->next;
-            push_A(list);
-            rotate_A(list);
-            count--;
+        // else if (tmp->next != NULL && tmp->next->index_sort == sort_inint->next)
+        // {
+        //     tmp = tmp->next;
+        //     swap_B(list);
+        //     tmp->flag = -1;
+        //     sort_inint->next++;
+        //     tmp = tmp->next;
+        //     push_A(list);
+        //     rotate_A(list);
+        //     //count--;
             
-        }
-        else if ((*list)->begin_B != NULL && (*list)->last_B != (*list)->begin_B && (*list)->last_B->index_sort == sort_inint->next)
-        {
-            tmp = (*list)->last_B;
-            rotate_RB(list);
-            tmp->flag = -1;
-            sort_inint->next++;
-            tmp = tmp->next;
-            push_A(list);
-            rotate_A(list);
-            count--;
+        // }
+        // else if ((*list)->begin_B != NULL && (*list)->last_B != (*list)->begin_B && (*list)->last_B->index_sort == sort_inint->next)
+        // {
+        //     tmp = (*list)->last_B;
+        //     rotate_RB(list);
+        //     tmp->flag = -1;
+        //     sort_inint->next++;
+        //     tmp = tmp->next;
+        //     push_A(list);
+        //     rotate_A(list);
+        //     count--;
             
-        }
+        // }
         
         else if ((*list)->begin_A->index_sort == sort_inint->next)
         {
@@ -144,7 +227,7 @@ void    push_high_mid_A(t_status_lists **list, t_sort_inint *sort_inint) // пу
         {
             if (tmp->index_sort > sort_inint->mid)
             {
-                tmp->flag = sort_inint->mid;  //  флаг будет равен медиане
+                tmp->flag = (*list)->flag_group;  
                 tmp = tmp->next;
                 push_A(list);
                 count--;
@@ -154,6 +237,8 @@ void    push_high_mid_A(t_status_lists **list, t_sort_inint *sort_inint) // пу
                 tmp = tmp->next;
                 if (tmp)
                 rotate_B(list);
+                count--;
+                
             }
         }
     }
@@ -221,8 +306,8 @@ void    sort_100_args(t_status_lists **list)
     sort_init->max = 0;
     sort_init->mid =0;
     sort_init->next = 1;
-    //(*list)->flag_group = 1;
-    
+    (*list)->flag_group = 500;
+     
     push_low_mid_B(list, sort_init);
     
     while(!sort_or_not((*list)->begin_A))
@@ -234,10 +319,20 @@ void    sort_100_args(t_status_lists **list)
             push_list_flags_B(list, sort_init);
         while ((*list)->begin_B)
         {
-            push_high_mid_A(list, sort_init);
-            //(*list)->flag_group++;
-            //printf("flag - %d\n", (*list)->begin_A->flag);
+          push_high_mid_A(list, sort_init);
+          (*list)->flag_group--;
+           //printf("flag - %d\n", (*list)->flag_group);
         }
+
+        // if (!(*list)->begin_B)
+        //     push_low_mid_B2(list, sort_init);
+        // while ((*list)->begin_B)
+        // {
+        //   push_high_mid_A(list, sort_init);
+        //   (*list)->flag_group--;
+        //    //printf("flag - %d\n", (*list)->flag_group);
+        // }
+
     }
     
 
