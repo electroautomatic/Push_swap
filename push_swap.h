@@ -11,7 +11,7 @@ typedef struct s_list
     int num;
     int index_sort;
     struct s_list *next;
-    struct s_list *prev;
+    // struct s_list *prev;
     int flag;
 }   t_init_list;
 
@@ -51,5 +51,7 @@ void    rotate_RR(t_status_lists **list);
 void    sort_3_args(t_status_lists **list);
 void    sort_5_args(t_status_lists **list);
 void    sort_100_args(t_status_lists **list);
+
+void    ft_free_list(t_status_lists **list);
 
 #endif

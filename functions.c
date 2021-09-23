@@ -6,11 +6,11 @@ int sort_or_not(t_init_list *list)
     {
         if(list->index_sort > list->next->index_sort)
         {
-            return(0); // не сортирован
+            return(0);
         }
         list = list->next;
     }
-    return(1); // сортирован
+    return(1);
 }
 
 int list_size(t_status_lists **list)
@@ -56,3 +56,20 @@ void    index_sort(t_status_lists **list)
         i = 1;        
     }
 }
+
+void ft_free_list(t_status_lists **list)
+{
+    t_init_list *tmp;
+    t_init_list *tmp_2;
+
+    tmp = (*list)->begin_A;
+
+    while (tmp)
+    {
+        tmp_2 = tmp->next;
+        free(tmp);
+        tmp = tmp_2;
+    }    
+}
+
+

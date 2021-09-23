@@ -28,7 +28,7 @@ void    stack_inint(int argc, char **argv, t_status_lists **list)
 
 int main(int argc, char **argv)
 {
- //   t_init_list *temp;
+ 
     t_status_lists *info_AB;
     
     info_AB = malloc(sizeof(t_status_lists));
@@ -40,56 +40,15 @@ int main(int argc, char **argv)
     stack_inint(argc, argv, &info_AB);
     index_sort(&info_AB);
    
-    //push_B(&info_AB);
-    //push_B(&info_AB);
-    //push_B(&info_AB);
-       
- // Проверка прямой команды -------------------------- 
-        
- /*   printf("Stack A\n");
-    temp = info_AB->begin_A;
-    while (temp->next)
-    {
-        printf("%d - %d  \n", temp->num, temp->value);
-        temp = temp->next;
-    }
-    printf("%d - %d  \n", temp->num, temp->value);
-// Проверка реверсной команды--------------------------  
-    
-    rotate_RR(&info_AB);
-       
-    printf("Stack B\n");
-    temp = info_AB->begin_B; 
-    while (temp->next)
-    {
-        printf("%d - %d  \n", temp->num, temp->value);
-        temp = temp->next;
-    }
-    printf("%d - %d  \n", temp->num, temp->value);
-    
- */       
+ 
     //sort_3_args(&info_AB);
 
     //sort_5_args(&info_AB);
     sort_100_args(&info_AB);
 
- ///------------------------------------------------------
- /*   printf("Stack A\n");
-    temp = info_AB->begin_A;
-    while (temp)
-    {
-        printf("%d - %d  \n", temp->value, temp->index_sort);
-        temp = temp->next;
-    }
-
-    printf("Stack B\n");
-    temp = info_AB->begin_B;
-    while (temp)
-    {
-        printf("%d - %d  \n", temp->value, temp->index_sort);
-        temp = temp->next;
-    }
-*/        
+ 
+    ft_free_list(&info_AB);
+    free(info_AB);
     return(0);
-       
+
 }
