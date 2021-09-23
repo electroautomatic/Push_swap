@@ -1,33 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   functions_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbalman <mbalman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/23 15:15:54 by mbalman           #+#    #+#             */
-/*   Updated: 2021/09/23 15:24:43 by mbalman          ###   ########.fr       */
+/*   Created: 2021/09/23 17:21:35 by mbalman           #+#    #+#             */
+/*   Updated: 2021/09/23 17:24:13 by mbalman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
-{
-	int	res;
-	int	negative;
+#include "push_swap.h"
 
-	negative = 1;
-	res = 0;
-	while (*str && (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\v'
-			|| *str == '\f' || *str == '\r'))
-		str++;
-	if (*str == '-')
-		negative = -1;
-	if (*str == '-' || *str == '+')
-		str++;
-	while (*str && *str >= '0' && *str <= '9')
+int	list_size_new(t_init_list *list)
+{
+	int			size;
+	t_init_list	*tmp;
+
+	size = 0;
+	tmp = list;
+	while (tmp)
 	{
-		res = res * 10 + (*str - 48);
-		str++;
+		tmp = tmp->next;
+		size++;
 	}
-	return (res * negative);
+	return (size);
+}
+
+int	ft_list_max_num(t_init_list *list)
+{
+	int			max_num;
+	t_init_list	*tmp;
+
+	max_num = 0;
+	tmp = list;
+	while (tmp)
+	{
+		if (max_num < tmp->index_sort)
+			max_num = tmp->index_sort;
+		tmp = tmp->next;
+	}
+	return (max_num);
 }

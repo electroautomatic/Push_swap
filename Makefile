@@ -5,11 +5,11 @@ CFLAGS = -g -Wall -Wextra -Werror
 
 SRCMODULES_A = push_swap.c\
 			   ft_atoi.c\
-			   operations.c\
+			   operations_1.c operations_2.c operations_3.c\
 			   sort_3_args.c\
 			   sort_5_args.c\
 			   sort_100_args.c\
-			   functions.c
+			   functions_1.c functions_2.c
 			   
 OBJMODULES_A = $(patsubst %.c,%.o,$(SRCMODULES_A))
 

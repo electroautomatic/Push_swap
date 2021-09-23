@@ -1,47 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_5_args.c                                      :+:      :+:    :+:   */
+/*   operations_3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbalman <mbalman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/23 16:26:08 by mbalman           #+#    #+#             */
-/*   Updated: 2021/09/23 16:26:14 by mbalman          ###   ########.fr       */
+/*   Created: 2021/09/23 17:11:34 by mbalman           #+#    #+#             */
+/*   Updated: 2021/09/23 17:11:54 by mbalman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
 
-void	sort_5_args(t_status_lists **list)
+void	rotate_RR(t_status_lists **list)
 {
-	int			count;
 	t_init_list	*tmp;
 
 	tmp = (*list)->begin_A;
-	count = list_size(list);
-	while (count != 3)
+	while (tmp->next->next)
 	{
-		if ((tmp->index_sort) == 1 || (tmp->index_sort) == 2)
-		{
-			tmp = tmp->next;
-			push_B(list);
-		}
-		else
-		{
-			tmp = tmp->next;
-			rotate_A(list);
-		}
-		count = list_size(list);
+		tmp = tmp->next;
 	}
-	if ((*list)->begin_B < (*list)->last_B)
+	tmp->next = NULL;
+	(*list)->last_A->next = (*list)->begin_A;
+	(*list)->begin_A = (*list)->last_A;
+	(*list)->last_A = tmp;
+	tmp = NULL;
+	tmp = (*list)->begin_B;
+	while (tmp->next->next)
 	{
-		swap_B(list);
-		push_A(list);
-		push_A(list);
+		tmp = tmp->next;
 	}
-	else
-	{
-		push_A(list);
-		push_A(list);
-	}
+	tmp->next = NULL;
+	(*list)->last_B->next = (*list)->begin_B;
+	(*list)->begin_B = (*list)->last_B;
+	(*list)->last_B = tmp;
+	write(1, "rrr\n", 4);
 }
