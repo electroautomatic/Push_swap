@@ -6,7 +6,7 @@
 /*   By: mbalman <mbalman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 16:13:40 by mbalman           #+#    #+#             */
-/*   Updated: 2021/09/23 17:25:34 by mbalman          ###   ########.fr       */
+/*   Updated: 2021/09/24 17:38:48 by mbalman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	rotate_RB(t_status_lists **list);
 void	rotate_RR(t_status_lists **list);
 
 void	sort_3_args(t_status_lists **list);
+void	sort_4_args(t_status_lists **list);
 void	sort_5_args(t_status_lists **list);
 void	sort_100_args(t_status_lists **list);
 

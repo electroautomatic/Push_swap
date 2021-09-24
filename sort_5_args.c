@@ -6,11 +6,26 @@
 /*   By: mbalman <mbalman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 16:26:08 by mbalman           #+#    #+#             */
-/*   Updated: 2021/09/23 16:26:14 by mbalman          ###   ########.fr       */
+/*   Updated: 2021/09/24 17:34:27 by mbalman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
+
+void	chek_and_push_a(t_status_lists **list)
+{
+	if ((*list)->begin_B->index_sort < (*list)->last_B->index_sort)
+	{
+		swap_B(list);
+		push_A(list);
+		push_A(list);
+	}
+	else
+	{
+		push_A(list);
+		push_A(list);
+	}
+}
 
 void	sort_5_args(t_status_lists **list)
 {
@@ -25,23 +40,14 @@ void	sort_5_args(t_status_lists **list)
 		{
 			tmp = tmp->next;
 			push_B(list);
+			count--;
 		}
 		else
 		{
 			tmp = tmp->next;
 			rotate_A(list);
-		}
-		count = list_size(list);
+		}		
 	}
-	if ((*list)->begin_B < (*list)->last_B)
-	{
-		swap_B(list);
-		push_A(list);
-		push_A(list);
-	}
-	else
-	{
-		push_A(list);
-		push_A(list);
-	}
+	sort_3_args(list);
+	chek_and_push_a(list);
 }

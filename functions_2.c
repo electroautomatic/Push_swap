@@ -6,7 +6,7 @@
 /*   By: mbalman <mbalman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:21:35 by mbalman           #+#    #+#             */
-/*   Updated: 2021/09/23 17:24:13 by mbalman          ###   ########.fr       */
+/*   Updated: 2021/09/24 19:15:56 by mbalman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,20 @@ int	ft_list_max_num(t_init_list *list)
 	}
 	return (max_num);
 }
+
+// void	chek_double(t_init_list *list) // проверка дублей
+// {
+// 	int num;
+
+// 	num = 0;
+// 	while (list->next)
+// 	{
+// 		num = list->value;	
+// 		if ( list->next->index_sort)
+// 		{
+// 			return (0);
+// 		}
+// 		list = list->next;
+// 	}
+// 	return (1);
+// }
