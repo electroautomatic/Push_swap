@@ -6,7 +6,7 @@
 /*   By: mbalman <mbalman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:30:46 by mbalman           #+#    #+#             */
-/*   Updated: 2021/09/24 19:02:34 by mbalman          ###   ########.fr       */
+/*   Updated: 2021/09/26 19:05:22 by mbalman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ int	main(int argc, char **argv)
 {
 	t_status_lists	*info_AB;
 
-	if (argc <= 2)
-		exit(0);
+	validation_args(argc, argv);
 	info_AB = malloc(sizeof(t_status_lists));
 	info_AB->begin_A = NULL;
 	info_AB->last_A = NULL;
 	info_AB->begin_B = NULL;
 	info_AB->last_B = NULL;
 	stack_inint(argc, argv, &info_AB);
+	chek_double(info_AB->begin_A);
 	index_sort(&info_AB);
 	if (sort_or_not(info_AB->begin_A))
 		exit(0);

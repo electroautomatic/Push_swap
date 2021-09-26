@@ -6,14 +6,16 @@
 /*   By: mbalman <mbalman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:15:54 by mbalman           #+#    #+#             */
-/*   Updated: 2021/09/23 15:24:43 by mbalman          ###   ########.fr       */
+/*   Updated: 2021/09/26 19:44:23 by mbalman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+#include "push_swap.h"
+
+long long int	ft_atoi(const char *str)
 {
-	int	res;
-	int	negative;
+	long long int	res;
+	int			negative;
 
 	negative = 1;
 	res = 0;

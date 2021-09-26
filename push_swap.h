@@ -6,7 +6,7 @@
 /*   By: mbalman <mbalman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 16:13:40 by mbalman           #+#    #+#             */
-/*   Updated: 2021/09/24 17:38:48 by mbalman          ###   ########.fr       */
+/*   Updated: 2021/09/26 19:44:34 by mbalman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_sort_init
 	int	max;
 }	t_sort_inint;
 
-int		ft_atoi(const char *str);
+long long int		ft_atoi(const char *str);
 int		sort_or_not(t_init_list *list);
 int		list_size(t_status_lists **list);
 void	index_sort(t_status_lists **list);
@@ -67,5 +67,8 @@ void	sort_100_args(t_status_lists **list);
 void	ft_free_list(t_status_lists **list);
 int		list_size_new(t_init_list *list);
 int		ft_list_max_num(t_init_list *list);
+void	chek_double(t_init_list *list);
+
+void	validation_args(int argc, char **argv);
 
 #endif
