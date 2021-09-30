@@ -6,7 +6,7 @@
 /*   By: mbalman <mbalman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:15:54 by mbalman           #+#    #+#             */
-/*   Updated: 2021/09/26 19:44:23 by mbalman          ###   ########.fr       */
+/*   Updated: 2021/09/27 14:13:14 by mbalman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 long long int	ft_atoi(const char *str)
 {
 	long long int	res;
-	int			negative;
+	int				negative;
 
 	negative = 1;
 	res = 0;
@@ -30,6 +30,11 @@ long long int	ft_atoi(const char *str)
 	{
 		res = res * 10 + (*str - 48);
 		str++;
+	}
+	if (*str == '-' || *str == '+')
+	{
+		write(2, "Error\n", 6);
+		exit(0);
 	}
 	return (res * negative);
 }

@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_4_args.c                                      :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbalman <mbalman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 16:00:14 by mbalman           #+#    #+#             */
-/*   Updated: 2021/09/28 16:00:17 by mbalman          ###   ########.fr       */
+/*   Created: 2021/09/28 18:14:12 by mbalman           #+#    #+#             */
+/*   Updated: 2021/09/28 18:41:35 by mbalman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"push_swap.h"
+#include "push_swap.h"
 
-void	sort_4_args(t_status_lists **list)
+int	get_next_line(char **line)
 {
-	int			count;
-	t_init_list	*tmp;
+	int		rd;
+	int		i;
+	char	ch;
+	char	*buffer;
 
-	tmp = (*list)->begin_A;
-	count = list_size(list);
-	while (count != 3)
+	rd = 1;
+	i = 0;
+	ch = 0;
+	buffer = malloc(100000);
+	*line = buffer;
+	while ((rd > 0) && (ch != '\n'))
 	{
-		if ((tmp->index_sort) == 1)
-		{
-			tmp = tmp->next;
-			push_B(list);
-			count--;
-		}
-		else
-		{
-			tmp = tmp->next;
-			rotate_A(list);
-		}		
+		rd = read(0, &ch, 1);
+		buffer[i++] = ch;
 	}
-	sort_3_args(list);
-	push_A(list);
+	buffer[i] = '\0';
+	return (rd);
 }

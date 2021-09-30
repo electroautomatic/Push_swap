@@ -6,7 +6,7 @@
 /*   By: mbalman <mbalman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:25:23 by mbalman           #+#    #+#             */
-/*   Updated: 2021/09/24 13:32:56 by mbalman          ###   ########.fr       */
+/*   Updated: 2021/09/29 14:15:59 by mbalman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,32 @@ void	ft_free_list(t_status_lists **list)
 		tmp_2 = tmp->next;
 		free(tmp);
 		tmp = tmp_2;
+	}
+}
+
+void	stack_inint(int argc, char **argv, t_status_lists **list)
+{
+	t_init_list	*temp;
+	int			i;
+
+	i = 1;
+	while (i < argc)
+	{
+		temp = malloc(sizeof(t_init_list));
+		temp->value = atoi(argv[i]);
+		temp->num = i;
+		temp->flag = 0;
+		temp->next = NULL;
+		if ((*list)->last_A)
+		{
+			(*list)->last_A->next = temp;
+			(*list)->last_A = (*list)->last_A->next;
+		}
+		else
+		{
+			(*list)->begin_A = temp;
+			(*list)->last_A = (*list)->begin_A;
+		}
+		i++;
 	}
 }

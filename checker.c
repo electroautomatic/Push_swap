@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbalman <mbalman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/23 15:30:46 by mbalman           #+#    #+#             */
-/*   Updated: 2021/09/29 14:18:27 by mbalman          ###   ########.fr       */
+/*   Created: 2021/09/28 17:20:28 by mbalman           #+#    #+#             */
+/*   Updated: 2021/09/29 17:15:47 by mbalman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	choise_sort(int argc, t_status_lists *info_AB)
+void	check_list(t_status_lists **list)
 {
-	if (argc == 3)
-		rotate_A(&info_AB);
-	else if (argc == 4)
-		sort_3_args(&info_AB);
-	else if (argc == 5)
-		sort_4_args(&info_AB);
-	else if (argc == 6)
-		sort_5_args(&info_AB);
+	if (sort_or_not((*list)->begin_A))
+		write(1, "OK\n", 3);
 	else
-		sort_100_args(&info_AB);
+		write(1, "KO\n", 3);
+}
+
+void	error_zerro(char *str)
+{
+	if (str[0] != '\0')
+	{
+		write(1, "Error\n", 6);
+		exit (0);
+	}
 }
 
 int	main(int argc, char **argv)
 {
 	t_status_lists	*info_AB;
+	char			*str;
 
+	str = NULL;
 	validation_args(argc, argv);
 	info_AB = malloc(sizeof(t_status_lists));
 	info_AB->begin_A = NULL;
@@ -39,10 +44,15 @@ int	main(int argc, char **argv)
 	stack_inint(argc, argv, &info_AB);
 	chek_double(info_AB->begin_A);
 	index_sort(&info_AB);
-	if (sort_or_not(info_AB->begin_A))
-		exit(0);
-	choise_sort (argc, info_AB);
+	while (get_next_line(&str))
+	{	
+		action(str, &info_AB);
+		free(str);
+	}
+	error_zerro(str);
+	check_list(&info_AB);
 	ft_free_list(&info_AB);
+	free(str);
 	free(info_AB);
 	return (0);
 }

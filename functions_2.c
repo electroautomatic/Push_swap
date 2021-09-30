@@ -6,7 +6,7 @@
 /*   By: mbalman <mbalman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:21:35 by mbalman           #+#    #+#             */
-/*   Updated: 2021/09/26 20:22:35 by mbalman          ###   ########.fr       */
+/*   Updated: 2021/09/27 16:05:20 by mbalman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,46 +68,4 @@ void	chek_double(t_init_list *list)
 		tmp2 = list;
 		tmp1 = tmp1->next;
 	}
-}
-
-void	validation_args(int argc, char **argv)
-{
-	int		i;
-	int		j;
-	char	**str;
-
-	str = argv;
-	i = 1;
-	j = 0;
-	while (i < argc)
-	{
-		while (str[i][j])
-		{		
-			if (str[i][j] == '+' || str[i][j] == '-')
-				j++;
-			else if (str[i][j] < '0' || str[i][j] > '9')
-			{
-				write(2, "Error\n", 6);
-				exit(0);
-			}
-			else
-				j++;
-		}
-		j = 0;
-		if (ft_atoi(str[i]) > 2147483647 || ft_atoi(str[i]) < -2147483647)
-		{
-			write(2, "Error\n", 6);
-			exit(0);
-		}
-		i++;
-	}
-	// if (*argv[1] == '-')
-	// {	
-	// 	write(2, "Error\n", 6);
-	// 	exit(0);
-	// }
-	if (argc <= 2)
-	{
-		exit(0);
-	}	
 }
