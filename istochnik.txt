@@ -1,5 +1,0 @@
-https://vk.com/@forum42intra-push-swap
-gcc -Wall -Wextra -Werror push_swap.c ft_atoi.c operations.c -o push_swap
-gcc -Wall -Wextra -Werror -g push_swap.c ft_atoi.c operations.c sort_3_args.c -o push_swapgcc -Wall -Wextra -Werror -g push_swap.c ft_atoi.c operations.c sort_3_args.c functions.c -o push_swap
-
-➜  list_test gcc -Wall -Wextra -Werror -g push_swap.c ft_atoi.c operations.c sort_3_args.c sort_5_args.c sort_100_args.c functions.c -o push_swap
